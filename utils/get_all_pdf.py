@@ -1,11 +1,14 @@
 from os import DirEntry, scandir
 
-def get_all_pdf(source:str)->list[DirEntry[str]]:
+def get_all_file_paths(source:str,filetype:str)->list[DirEntry[str]]:
     "get all pdf files from a certain directory"
     list_of_files = list(scandir(source))
-    filtered = list(filter(_is_pdf,list_of_files)) 
+    
+    filter_callable = _gen_is_filetype(filetype)
+    
+    filtered = list(filter(filter_callable,list_of_files)) 
     print('found', len(filtered),'PDF file(s)' )
     return filtered
 
-def _is_pdf(entry:DirEntry[str]):
-    return entry.name.endswith('.pdf')
+def _gen_is_filetype(filetype:str):
+        return lambda entry: entry.name.endswith(filetype)
