@@ -24,3 +24,13 @@ def text_to_file(*,output_filepath:str,content:str):
         doc.write(content)
         doc.close()
         print('stored text:',output_filepath)
+        
+def process_files(output_subfolder:str,files:tuple[os.DirEntry[str]]):
+    print(len(files),"PDF(s) file(s) ready to process")
+    
+    for file in files:
+        content = pdf_to_text(source_path=file.path)
+        text_to_file(output_filepath=output_subfolder+'/'+file.name+'.txt',content=content)
+        
+    print(len(files),"PDF(s) file(s) processed")
+    return None
