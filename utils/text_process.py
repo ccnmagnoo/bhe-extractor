@@ -1,19 +1,26 @@
+import os
 import PyPDF2 as pypdf
 
-def text_extract(*,filepath:str)->str:
+def pdf_to_text(*,source_path:str)->str:
     "given a filename return text"
-    with open(filepath,'rb') as f:
+    with open(source_path,'rb') as f:
         reader = pypdf.PdfReader(f)
         text = ''
+        
+        if len(reader.pages)<=0:
+            raise ValueError("is not a pdf")  
 
         for page in reader.pages:
             text += page.extract_text()
-        print('extracted from:',filepath)
+        print('extracted from:',source_path)
         return text
     
-def text_to_file(*,filepath:str,content:str):
+def text_to_file(*,output_filepath:str,content:str):
     "store given text"
-    with open (filepath+'.txt','w',encoding='utf-8') as doc:
+    
+    os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
+
+    with open (output_filepath,'w',encoding=None) as doc:
         doc.write(content)
         doc.close()
-        print('stored text:',filepath)
+        print('stored text:',output_filepath)
