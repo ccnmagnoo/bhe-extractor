@@ -1,7 +1,7 @@
 import os
 import PyPDF2 as pypdf
 
-def pdf_to_text(*,source_path:str)->str:
+def pdf_to_str(*,source_path:str)->str:
     "given a filename return text"
     with open(source_path,'rb') as f:
         reader = pypdf.PdfReader(f)
@@ -15,7 +15,7 @@ def pdf_to_text(*,source_path:str)->str:
         print('extracted from:',source_path)
         return text
 
-def text_to_file(*,output_filepath:str,content:str):
+def str_to_file(*,output_filepath:str,content:str):
     "store given text"
 
     os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
@@ -29,8 +29,8 @@ def process_pdf_files(output_subfolder:str,files:tuple[os.DirEntry[str]]):
     print(len(files),"PDF(s) file(s) ready to process")
 
     for file in files:
-        content = pdf_to_text(source_path=file.path)
-        text_to_file(output_filepath=output_subfolder+'/'+file.name+'.txt',content=content)
+        content = pdf_to_str(source_path=file.path)
+        str_to_file(output_filepath=output_subfolder+'/'+file.name+'.txt',content=content)
 
     print(len(files),"PDF(s) file(s) processed")
     return None
