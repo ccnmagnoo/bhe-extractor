@@ -1,5 +1,5 @@
 from os import DirEntry
 
-type DataPattern = dict[str,str]
 
-val = r'\\'
+def process_content_files():
+    return None
