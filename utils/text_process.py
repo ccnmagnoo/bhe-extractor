@@ -20,12 +20,21 @@ def str_to_file(*,output_filepath:str,content:str):
 
     os.makedirs(os.path.dirname(output_filepath), exist_ok=True)
 
-    with open (output_filepath,'w',encoding=None) as doc:
+    with open (output_filepath,'w',encoding='latin_1') as doc:
         doc.write(content)
         doc.close()
         print('stored text:',output_filepath)
 
 def process_pdf_files(output_subfolder:str,files:tuple[os.DirEntry[str]]):
+    """
+    bulk extract content to txt files:
+    >>>
+    parameters:
+
+        output_subfolder: subfolder name
+        files: list DirEntry objects from os.scan(*source*)
+    """
+
     print(len(files),"PDF(s) file(s) ready to process")
 
     for file in files:
