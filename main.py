@@ -1,6 +1,5 @@
 from utils.data_process import  text_to_data
 from utils.get_all_pdf import get_all_file_paths
-from utils.text_process import process_pdf_files
 from models.DataPattern import chilquinta
 #working directory
 SOURCE = "../../../crcam/OneDrive - Ministerio de Energia/Proyectos Públicos/PV Museo HN Valparaíso/consumos"
