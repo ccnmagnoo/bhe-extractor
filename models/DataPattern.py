@@ -2,26 +2,27 @@ from dataclasses import dataclass
 from re import Pattern, compile
 
 #cspell: disable
-type PatternModel = dict[str,Pattern[str]]
+type PatternModel = dict[str,Pattern]
 
 @dataclass
 class InvoicePattern:
     """Regex Pattern requirements to match certain Invoice param"""
-    client:Pattern[str]
-    measurer:Pattern[str]
-    fare:Pattern[str]
-    period:Pattern[str]
-    lecture_act:Pattern[str]
-    lecture_ant:Pattern[str]
-    reactive_act:Pattern[str]
-    reactive_ant:Pattern[str]
-    power_demand:Pattern[str]
-    electricity_consumption:Pattern[str]
-    electricity_cost:Pattern[str]
-    power_max:Pattern[str]
-    power_max_cost:Pattern[str]
-    admin_cost:Pattern[str]
-    transport_cost:Pattern[str]
+    client:Pattern
+    measurer:Pattern
+    fare:Pattern
+    period:Pattern
+    lecture_act:Pattern
+    lecture_ant:Pattern
+    reactive_act:Pattern
+    reactive_ant:Pattern
+    power_demand:Pattern
+    electricity_consumption:Pattern
+    electricity_cost:Pattern
+    power_max:Pattern
+    power_max_cost:Pattern
+    admin_cost:Pattern
+    transport_cost:Pattern
+    total_bill:Pattern
 
 chilquinta = InvoicePattern(
     client=compile(r'(\d{5,6}-\d)'),
@@ -39,4 +40,5 @@ chilquinta = InvoicePattern(
     power_max_cost=compile(r'demanda máxima\s+\d*\W?\d* kW \$ (\d*.?\d+)'),
     admin_cost=compile(r'servicio \$ (\d*.?\d+)'),
     transport_cost=compile(r'transporte de electricidad \$ (\d*.?\d+)'),
+    total_bill=compile(r'\d{5,6}-\d\W*\$\s*(d\*.?d\*)'),
 )
