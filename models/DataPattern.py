@@ -1,8 +1,34 @@
 from dataclasses import dataclass
+from datetime import datetime
+from typing import Callable
 from re import Pattern, compile
 
 #cspell: disable
 type PatternModel = dict[str,Pattern]
+
+#data loader transform
+# function who recieve an input type, and a tranfromer function
+type Transformer[IN,OUT] = Callable[[IN,Callable[[IN],OUT]],OUT]
+
+@dataclass
+class Invoice:
+    """invoice with electric bill"""
+    client:str
+    measurer:int
+    fare:str
+    period:tuple[datetime,datetime]
+    lecture_act:int
+    lecture_ant:int
+    reactive_act:int
+    reactive_ant:int
+    power_demand:float
+    electricity_consumption:float
+    electricity_cost:int
+    power_max:float
+    power_max_cost:int
+    admin_cost:int
+    transport_cost:int
+    total_bill:int
 
 @dataclass
 class InvoicePattern:
@@ -42,3 +68,5 @@ chilquinta = InvoicePattern(
     transport_cost=compile(r'transporte de electricidad \$ (\d*.?\d+)'),
     total_bill=compile(r'\d{5,6}-\d \d{2} \w{3} \d{4}\r\n\s*\$ (\d*.?\d+)'),
 )
+# final
+

@@ -7,7 +7,7 @@ from models.DataPattern import InvoicePattern
 def process_content_files(source:list[DirEntry[str]],pattern_model):
     pass
 
-def text_to_data(file:DirEntry[str],patter_model:InvoicePattern):
+def text_to_data(file:DirEntry[str],invoice_model:InvoicePattern):
     "extract data from txt file"
     print('processing string content in:',file)
 
@@ -17,10 +17,11 @@ def text_to_data(file:DirEntry[str],patter_model:InvoicePattern):
         content = str(txt_file.read(),encoding='ansi')
         print('reading:',file.name)
 
-        for field in fields(patter_model):
-            compiler:Pattern[str] = getattr(patter_model,field.name)
+        for field in fields(invoice_model):
+            # loop in invoice patter for regex compiler tool
+            compiler:Pattern[str] = getattr(invoice_model,field.name)
             result = compiler.findall(content)
-
+            
             print('result for',field.name,'is',result)
 
         txt_file.close()
