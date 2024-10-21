@@ -40,5 +40,5 @@ chilquinta = InvoicePattern(
     power_max_cost=compile(r'demanda máxima\s+\d*\W?\d* kW \$ (\d*.?\d+)'),
     admin_cost=compile(r'servicio \$ (\d*.?\d+)'),
     transport_cost=compile(r'transporte de electricidad \$ (\d*.?\d+)'),
-    total_bill=compile(r'\d{5,6}-\d\W*\$\s*(d\*.?d\*)'),
+    total_bill=compile(r'\d{5,6}-\d \d{2} \w{3} \d{4}\r\n\s*\$ (\d*.?\d+)'),
 )
