@@ -1,7 +1,7 @@
 from dataclasses import fields
 from os import DirEntry
 from re import Pattern
-from models.DataPattern import InvoicePattern
+from models.DataPattern import InvoicePattern,InvoiceAdapter
 
 
 def process_content_files(source:list[DirEntry[str]],pattern_model):

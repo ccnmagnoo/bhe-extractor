@@ -31,24 +31,28 @@ class Invoice:
     total_bill:int
 
 @dataclass
-class InvoicePattern:
+class InvoiceAdapter[T]:
     """Regex Pattern requirements to match certain Invoice param"""
-    client:Pattern
-    measurer:Pattern
-    fare:Pattern
-    period:Pattern
-    lecture_act:Pattern
-    lecture_ant:Pattern
-    reactive_act:Pattern
-    reactive_ant:Pattern
-    power_demand:Pattern
-    electricity_consumption:Pattern
-    electricity_cost:Pattern
-    power_max:Pattern
-    power_max_cost:Pattern
-    admin_cost:Pattern
-    transport_cost:Pattern
-    total_bill:Pattern
+    client:T
+    measurer:T
+    fare:T
+    period:T
+    lecture_act:T
+    lecture_ant:T
+    reactive_act:T
+    reactive_ant:T
+    power_demand:T
+    electricity_consumption:T
+    electricity_cost:T
+    power_max:T
+    power_max_cost:T
+    admin_cost:T
+    transport_cost:T
+    total_bill:T
+
+type InvoicePattern = InvoiceAdapter[Pattern[str]]
+
+type InvoiceTransformer = InvoiceAdapter[Callable]
 
 chilquinta = InvoicePattern(
     client=compile(r'(\d{5,6}-\d)'),
@@ -67,6 +71,14 @@ chilquinta = InvoicePattern(
     admin_cost=compile(r'servicio \$ (\d*.?\d+)'),
     transport_cost=compile(r'transporte de electricidad \$ (\d*.?\d+)'),
     total_bill=compile(r'\d{5,6}-\d \d{2} \w{3} \d{4}\r\n\s*\$ (\d*.?\d+)'),
+)
+
+chilquinta_t = InvoiceAdapter[Callable](
+    client = lambda input: input[0],
+    measurer = lambda input:int(input[0]),
+    fare = lambda input: input[0],
+    
+    
 )
 # final
 
