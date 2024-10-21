@@ -11,6 +11,7 @@ def text_to_data(file:DirEntry[str],invoice_model:InvoicePattern):
     "extract data from txt file"
     print('processing string content in:',file)
 
+    container:dict[str,list] = {}
 
     with open(file,'rb') as txt_file:
 
@@ -23,7 +24,10 @@ def text_to_data(file:DirEntry[str],invoice_model:InvoicePattern):
             result = compiler.findall(content)
             
             print('result for',field.name,'is',result)
+            
+            container[field.name] = result
 
         txt_file.close()
+        
 
-    return None
+    return container

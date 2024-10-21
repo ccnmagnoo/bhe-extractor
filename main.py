@@ -15,7 +15,7 @@ TARGET = SOURCE+'/'+'content'
 #extract data
 scan_txt = get_all_file_paths(TARGET,'.txt')
 print(scan_txt[0])
-text_to_data(scan_txt[0],chilquinta)
+print(text_to_data(scan_txt[0],chilquinta))
 
 # content = pdf_to_text(source_path=filename.path)
 # text_to_file(output_filepath=SOURCE+'/'+TARGET+'/'+filename.name+'.txt',content=content)
