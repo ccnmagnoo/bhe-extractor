@@ -1,6 +1,7 @@
+from libs.transformer import compose_date, raw_to_datetime
 from utils.data_process import  text_to_data
 from utils.get_all_pdf import get_all_file_paths
-from models.DataPattern import chilquinta
+from libs.pattern import chilquinta
 #working directory
 SOURCE = "../../../crcam/OneDrive - Ministerio de Energia/Proyectos Públicos/PV Museo HN Valparaíso/consumos"
 TARGET = SOURCE+'/'+'content'

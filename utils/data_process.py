@@ -1,13 +1,13 @@
 from dataclasses import fields
 from os import DirEntry
 from re import Pattern
-from models.DataPattern import InvoicePattern,InvoiceAdapter
+from models.DataPattern import InvoiceAdapter
 
 
 def process_content_files(source:list[DirEntry[str]],pattern_model):
     pass
 
-def text_to_data(file:DirEntry[str],invoice_model:InvoicePattern):
+def text_to_data(file:DirEntry[str],invoice_model:InvoiceAdapter[Pattern]):
     "extract data from txt file"
     print('processing string content in:',file)
 
