@@ -1,13 +1,15 @@
 from dataclasses import fields
+from importlib.metadata import Distribution
 from os import DirEntry
 from re import Pattern
+from libs.manager import CONTEXT
 from models.DataPattern import InvoiceAdapter
 
 
 def process_content_files(source:list[DirEntry[str]],pattern_model):
     pass
 
-def text_to_data(file:DirEntry[str],invoice_model:InvoiceAdapter[Pattern]):
+def text_to_data(file:DirEntry[str],model:Distribution):
     "extract data from txt file"
     print('processing string content in:',file)
 
@@ -17,6 +19,8 @@ def text_to_data(file:DirEntry[str],invoice_model:InvoiceAdapter[Pattern]):
 
         content = str(txt_file.read(),encoding='ansi')
         print('reading:',file.name)
+        
+        invoice_model: InvoiceAdapter[Pattern] = CONTEXT[model]['pattern']
 
         for field in fields(invoice_model):
             # loop in invoice patter for regex compiler tool

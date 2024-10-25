@@ -1,7 +1,5 @@
-from libs.transformer import compose_date, raw_to_datetime
 from utils.data_process import  text_to_data
 from utils.get_all_pdf import get_all_file_paths
-from libs.pattern import chilquinta
 #working directory
 SOURCE = "../../../crcam/OneDrive - Ministerio de Energia/Proyectos Públicos/PV Museo HN Valparaíso/consumos"
 TARGET = SOURCE+'/'+'content'
@@ -16,7 +14,5 @@ TARGET = SOURCE+'/'+'content'
 #extract data
 scan_txt = get_all_file_paths(TARGET,'.txt')
 print(scan_txt[0])
-print(text_to_data(scan_txt[0],chilquinta))
+print(text_to_data(scan_txt[0],'Chilquinta'))
 
-# content = pdf_to_text(source_path=filename.path)
-# text_to_file(output_filepath=SOURCE+'/'+TARGET+'/'+filename.name+'.txt',content=content)
