@@ -3,7 +3,6 @@ from typing import Callable
 from models.DataPattern import InvoiceAdapter
 from utils.data_extraction import extract_factory,raw_to_datetime
 
-
 chilquinta = InvoiceAdapter[Callable](
     client = extract_factory(str),
     measurer = extract_factory(int),
@@ -23,4 +22,3 @@ chilquinta = InvoiceAdapter[Callable](
     total_bill=extract_factory(float,lambda it:it.replace('.','')),
 )
 #
-

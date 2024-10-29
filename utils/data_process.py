@@ -1,15 +1,15 @@
 from dataclasses import fields
-from importlib.metadata import Distribution
 from os import DirEntry
 from re import Pattern
 from libs.manager import CONTEXT
 from models.DataPattern import InvoiceAdapter
+from libs.manager import Provider
 
 
 def process_content_files(source:list[DirEntry[str]],pattern_model):
     pass
 
-def text_to_data(file:DirEntry[str],model:Distribution):
+def text_to_data(file:DirEntry[str],model:Provider):
     "extract data from txt file"
     print('processing string content in:',file)
 
@@ -35,3 +35,6 @@ def text_to_data(file:DirEntry[str],model:Distribution):
         
 
     return container
+
+def data_to_fmt(data:dict[[str],str],model:Provider):
+    pass
