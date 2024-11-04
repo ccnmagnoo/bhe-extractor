@@ -14,5 +14,7 @@ TARGET = SOURCE+'/'+'content'
 #extract data
 scan_txt = get_all_file_paths(TARGET,'.txt')
 print(scan_txt[0])
+#text to raw str data
 print(raw_data:=text_to_data(scan_txt[0],'Chilquinta'))
+#raw str data to typed data
 print(fmt_data:=data_to_fmt(raw_data,'Chilquinta'))

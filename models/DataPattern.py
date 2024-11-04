@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Callable
 from re import Pattern, compile
+from typing import Callable
 
 #cspell: disable
 type PatternModel = dict[str,Pattern]
@@ -13,22 +13,21 @@ type Transformer[IN,OUT] = Callable[[IN,Callable[[IN],OUT]],OUT]
 @dataclass
 class Invoice:
     """invoice with electric bill"""
-    client:str = ''
-    measurer:int = 0
-    fare:str = ''
-    period:tuple[datetime,datetime] = ()
-    lecture_act:int = 0
-    lecture_ant:int = 0
-    reactive_act:int = 0
-    reactive_ant:int = 0
-    power_demand:float = 0.0
-    electricity_consumption:float = 0.0
-    electricity_cost:int = 0
-    power_max:float = 0.0
-    power_max_cost:int = 0
-    admin_cost:int = 0
-    transport_cost:int = 0
-    total_bill:int = 0
+    client:str
+    measurer:int
+    fare:str
+    period:tuple[datetime,datetime]
+    lecture_act:int
+    lecture_ant:int
+    reactive_act:int
+    reactive_ant:int
+    power_demand:float
+    electricity_consumption:float
+    electricity_cost:int
+    power_max_cost:int
+    admin_cost:int
+    transport_cost:int
+    total_bill:int
 
 @dataclass
 class InvoiceAdapter[T,P = T]:
@@ -36,21 +35,21 @@ class InvoiceAdapter[T,P = T]:
     - **T**: all params type
     - **P**: period lecture type, default = *T*
     """
-    client:T = field(default_factory=T)
-    measurer:T = field(default_factory=T)
-    fare:T = field(default_factory=T)
-    period:P = field(default_factory=P)
-    lecture_act:T = field(default_factory=T)
-    lecture_ant:T = field(default_factory=T)
-    reactive_act:T = field(default_factory=T)
-    reactive_ant:T = field(default_factory=T)
-    power_demand:T = field(default_factory=T)
-    electricity_consumption:T = field(default_factory=T)
-    electricity_cost:T = field(default_factory=T)
-    power_max:T = field(default_factory=T)
-    power_max_cost:T = field(default_factory=T)
-    admin_cost:T = field(default_factory=T)
-    transport_cost:T = field(default_factory=T)
-    total_bill:T = field(default_factory=T)
+    client:T
+    measurer:T
+    fare:T
+    period:P
+    lecture_act:T
+    lecture_ant:T
+    reactive_act:T
+    reactive_ant:T
+    power_demand:T
+    electricity_consumption:T
+    electricity_cost:T
+    power_max:T
+    power_max_cost:T
+    admin_cost:T
+    transport_cost:T
+    total_bill:T
 # final
 

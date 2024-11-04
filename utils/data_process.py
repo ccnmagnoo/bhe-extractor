@@ -36,16 +36,24 @@ def text_to_data(file:DirEntry[str],model:Provider)->Raw:
             container[field.name] = result
 
         txt_file.close()
-    
+
     raw_data:InvoiceAdapter[list[str],list[tuple[str]]] = InvoiceAdapter(**container)
 
 
     return raw_data
 
-def data_to_fmt(raw_data:Raw,model:Provider):
+def data_to_fmt(raw_data:Raw,model:Provider)->Invoice:
+    """Raw str Invoice Data to Invoice Object with proper type"""
     transformer: InvoiceAdapter[Callable,Callable[[tuple,str],datetime]] = CONTEXT[model]['transformer']
-    print(raw_data)
 
+    container:dict = {}
 
+    for field in fields(raw_data):
+        raw_param = getattr(raw_data,field.name)
+        convert_fun  = getattr(transformer,field.name)
 
-    pass
+        fmt_param = convert_fun(raw_param)
+
+        container[field.name] = fmt_param
+
+    return Invoice(**container)
