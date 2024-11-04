@@ -3,7 +3,7 @@ from typing import Callable
 from models.DataPattern import InvoiceAdapter
 from utils.data_extraction import extract_factory,raw_to_datetime
 
-chilquinta = InvoiceAdapter[Callable](
+chilquinta = InvoiceAdapter[Callable,Callable](
     client = extract_factory(str),
     measurer = extract_factory(int),
     fare = extract_factory(str),

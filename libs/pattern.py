@@ -3,7 +3,7 @@ from models.DataPattern import InvoiceAdapter
 
 #cspell: disable
 
-chilquinta = InvoiceAdapter[Pattern](
+chilquinta = InvoiceAdapter[Pattern,Pattern](
     client=compile(r'(\d{5,6}-\d)'),
     measurer= compile(r'(\d{7,8})EmpresaActual'),
     fare= compile(r'tarifa contratada: ([\w*-]*\s?\w*)'),
