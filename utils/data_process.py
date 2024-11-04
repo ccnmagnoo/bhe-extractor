@@ -11,7 +11,9 @@ from libs.manager import Provider
 def process_content_files(source:list[DirEntry[str]],pattern_model):
     pass
 
-def text_to_data(file:DirEntry[str],model:Provider):
+type Raw = InvoiceAdapter[list[str],list[tuple[str]]]
+
+def text_to_data(file:DirEntry[str],model:Provider)->Raw:
     "extract data from txt file"
     print('processing string content in:',file)
 
@@ -22,7 +24,7 @@ def text_to_data(file:DirEntry[str],model:Provider):
         content = str(txt_file.read(),encoding='ansi')
         print('reading:',file.name)
 
-        invoice_model: InvoiceAdapter[Pattern,Pattern] = CONTEXT[model]['pattern']
+        invoice_model: InvoiceAdapter[Pattern] = CONTEXT[model]['pattern']
 
         for field in fields(invoice_model):
             # loop in invoice patter for regex compiler tool
@@ -34,12 +36,15 @@ def text_to_data(file:DirEntry[str],model:Provider):
             container[field.name] = result
 
         txt_file.close()
+    
+    raw_data:InvoiceAdapter[list[str],list[tuple[str]]] = InvoiceAdapter(**container)
 
 
-    return container
+    return raw_data
 
-def data_to_fmt(data:dict[[str],list[str]],model:Provider):
+def data_to_fmt(raw_data:Raw,model:Provider):
     transformer: InvoiceAdapter[Callable,Callable[[tuple,str],datetime]] = CONTEXT[model]['transformer']
+    print(raw_data)
 
 
 
