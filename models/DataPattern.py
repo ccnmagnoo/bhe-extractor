@@ -24,6 +24,7 @@ class Invoice:
     power_demand:float
     electricity_consumption:float
     electricity_cost:int
+    power_max:float
     power_max_cost:int
     admin_cost:int
     transport_cost:int

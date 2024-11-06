@@ -8,10 +8,10 @@ def extract_factory[T:type](ty:T,normalizer:Callable[[str],T]|None = None)->Call
     only for  float, int, str
     """
     if normalizer is not None:
-        extract_fun: T = lambda it: ty(normalizer(it[0]))
+        extract_fun: T = lambda it: ty(normalizer(it[0])) if len(it)>0 else None
         return extract_fun
 
-    extract_fun: T = lambda it: ty(it[0])
+    extract_fun: T = lambda it: ty(it[0]) if len(it)>0 else None
 
     return extract_fun
 
