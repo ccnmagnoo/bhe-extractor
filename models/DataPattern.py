@@ -28,8 +28,8 @@ class Invoice:
     transport_cost:int
     total_bill:int
     #
-    power_max:float
-    power_max_cost:int
+    demand_max:float
+    demand_max_cost:int
 
 @dataclass
 class InvoiceAdapter[T,P = T]:
@@ -52,7 +52,7 @@ class InvoiceAdapter[T,P = T]:
     transport_cost:T
     total_bill:T
     #
-    power_max:T
-    power_max_cost:T
+    demand_max:T
+    demand_max_cost:T
 # final
 
