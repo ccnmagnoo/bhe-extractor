@@ -1,6 +1,6 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime
-from re import Pattern, compile
+from re import Pattern
 from typing import Callable
 
 #cspell: disable
@@ -24,11 +24,12 @@ class Invoice:
     power_demand:float
     electricity_consumption:float
     electricity_cost:int
-    power_max:float
-    power_max_cost:int
     admin_cost:int
     transport_cost:int
     total_bill:int
+    #
+    power_max:float
+    power_max_cost:int
 
 @dataclass
 class InvoiceAdapter[T,P = T]:
@@ -47,10 +48,11 @@ class InvoiceAdapter[T,P = T]:
     power_demand:T
     electricity_consumption:T
     electricity_cost:T
-    power_max:T
-    power_max_cost:T
     admin_cost:T
     transport_cost:T
     total_bill:T
+    #
+    power_max:T
+    power_max_cost:T
 # final
 

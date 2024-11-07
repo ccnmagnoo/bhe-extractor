@@ -26,7 +26,7 @@ def raw_to_datetime(period:list[tuple[str,str]])->tuple[datetime,datetime]:
     return res
 
 type Month = Literal['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']
-MONTH:dict[Month,str] = {'ene':'01','feb':'02','mar':'03','abr':'04','may':'05','jun':'06','jul':'07','ago':'08','sep':'09','oct':'10','nov':'011','dic':'12'}
+MONTH:dict[Month,str] = {'ene':'01','feb':'02','mar':'03','abr':'04','may':'05','jun':'06','jul':'07','ago':'08','sep':'09','oct':'10','nov':'11','dic':'12'}
 
 def es_month_to_num(short:Month):
     "given 3 chars month return correlative month number 01-12"

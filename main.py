@@ -1,4 +1,4 @@
-from utils.data_process import  text_to_data, data_to_fmt
+from utils.data_process import  process_content_files
 from utils.get_all_pdf import get_all_file_paths
 #working directory
 SOURCE = "../../../crcam/OneDrive - Ministerio de Energia/Proyectos Públicos/PV Museo HN Valparaíso/consumos"
@@ -11,10 +11,9 @@ TARGET = SOURCE+'/'+'content'
 #extract text
 #process_pdf_files(output_subfolder=TARGET,files=scan_files)
 
-#extract data
+#extract files
 scan_txt = get_all_file_paths(TARGET,'.txt')
-print(scan_txt[0])
-#text to raw str data
-print(raw_data:=text_to_data(scan_txt[0],'Chilquinta'))
-#raw str data to typed data
-print(fmt_data:=data_to_fmt(raw_data,'Chilquinta'))
+
+#extract data from files
+res = process_content_files(output_folder=TARGET,model='Chilquinta',files=scan_txt)
+print(res[23])

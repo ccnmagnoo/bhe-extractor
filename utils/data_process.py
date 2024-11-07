@@ -8,8 +8,7 @@ from models.DataPattern import Invoice, InvoiceAdapter
 from libs.manager import Provider
 
 
-def process_content_files(source:list[DirEntry[str]],pattern_model):
-    pass
+
 
 type Raw = InvoiceAdapter[list[str],list[tuple[str]]]
 
@@ -31,7 +30,7 @@ def text_to_data(file:DirEntry[str],model:Provider)->Raw:
             compiler:Pattern[str] = getattr(invoice_model,field.name)
             result = compiler.findall(content)
 
-            print('result for',field.name,'is',result)
+            #print('result for',field.name,'is',result)
 
             container[field.name] = result
 
@@ -46,6 +45,8 @@ def data_to_fmt(raw_data:Raw,model:Provider)->Invoice:
     """Raw str Invoice Data to Invoice Object with proper type"""
     transformer: InvoiceAdapter[Callable,Callable[[tuple,str],datetime]] = CONTEXT[model]['transformer']
 
+    print('formatting data',raw_data.period)
+
     container:dict = {}
 
     for field in fields(raw_data):
@@ -56,4 +57,18 @@ def data_to_fmt(raw_data:Raw,model:Provider)->Invoice:
 
         container[field.name] = fmt_param
 
+
     return Invoice(**container)
+
+def process_content_files(*,output_folder:str,model:Provider,files:list[DirEntry[str]])->list[Invoice]:
+    """given a list of txt, with a provider template extract and format data
+    - output folder-> result CSV
+    - provider: Company invoice model
+    - files: txt containing raw data
+    """
+
+    raw:list[Raw] = list(map(text_to_data,files,[model]*len(files)))
+
+    res:list[Invoice] = list(map(data_to_fmt,raw,[model]*len(files)))
+
+    return res
