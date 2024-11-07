@@ -60,7 +60,7 @@ def data_to_fmt(raw_data:Raw,model:Provider)->Invoice:
 
     return Invoice(**container)
 
-def process_content_files(*,output_folder:str,model:Provider,files:list[DirEntry[str]])->list[Invoice]:
+def process_txt_files(*,model:Provider,files:list[DirEntry[str]])->list[Invoice]:
     """given a list of txt, with a provider template extract and format data
     - output folder-> result CSV
     - provider: Company invoice model
