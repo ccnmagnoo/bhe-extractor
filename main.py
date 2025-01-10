@@ -9,10 +9,10 @@ SOURCE = "../../../crcam/Downloads/puchuncaví"
 TARGET = SOURCE+'/'+'content'
 # source = "../../../crcam/Downloads/mhnv"
 
-#get files paths
+#get source files paths
 scan_files = get_all_file_paths(source=SOURCE,filetype='.pdf')
 
-#extract text
+#extract text from source to target folder
 process_pdf_files(output_subfolder=TARGET,files=scan_files)
 
 #fetch text files
@@ -23,4 +23,3 @@ data = process_txt_files(model='Chilquinta_2',files=content_files)
 
 #to file
 data_to_excel(data,TARGET)
-
