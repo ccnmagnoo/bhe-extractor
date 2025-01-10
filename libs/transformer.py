@@ -39,7 +39,6 @@ chilquinta2 = InvoiceAdapter[Callable,Callable](
     transport_cost=extract_factory(int,lambda it:it.replace('.','')),
     total_bill=extract_factory(float,lambda it:it.replace('.','')),
 )
-
 litoral = InvoiceAdapter[Callable,Callable](
     client = extract_factory(str),
     measurer = extract_factory(int),
