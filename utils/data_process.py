@@ -1,6 +1,7 @@
 from dataclasses import fields
 from datetime import datetime
 from os import DirEntry
+from pprint import pp
 from re import Pattern
 from typing import Callable
 from libs.manager import CONTEXT
@@ -68,6 +69,7 @@ def process_txt_files(*,model:Provider,files:list[DirEntry[str]])->list[Invoice]
     """
 
     raw:list[Raw] = list(map(text_to_data,files,[model]*len(files)))
+    pp(raw)
 
     res:list[Invoice] = list(map(data_to_fmt,raw,[model]*len(files)))
 

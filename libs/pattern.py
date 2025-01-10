@@ -22,6 +22,25 @@ chilquinta = InvoiceAdapter[Pattern,Pattern](
     total_bill=compile(r'\d{5,6}-\d \d{2} \w{3} \d{4}\r\n\s*\$ (\d*.?\d+)'),
 )
 
+chilquinta2= InvoiceAdapter[Pattern,Pattern](
+    client=compile(r'CLIENTE: (\d{5,6}\s*-\s*\d)'),#rev
+    measurer= compile(r'(\d{7,9})\s+\d+\s*Activo'),#rev
+    fare= compile(r'[A,B]T\s*-?\s*\d+.?\d*\s*[PP,PPP]?'),#rev
+    period=compile(r'(\d{2} \w{3} \d{4})\s+al\s+(\d{2} \w{3} \d{4})'),#rev
+    lecture_act= compile(r'\d{7,9}\s+\d+\s*Activo Empresa (\d+) \d+ \d+'),#rev
+    lecture_ant= compile(r'\d{7,9}\s+\d+\s*Activo Empresa \d+ (\d+) \d+'),#rev
+    reactive_act=compile(r'\d{7,9}\s+\d+\s*Reactivo Empresa (\d+) \d+ \d+'),#rev
+    reactive_ant=compile(r'\d{7,9}\s+\d+\s*Reactivo Empresa \d+ (\d+) \d+'),#rev
+    power_demand=compile(r'Demanda Leida :?\s+(\d*\W?\d)* kW'),
+    electricity_consumption=compile(r'(\d+)\s+Electricidad consumida kWh \d*.?\d+'),#rev
+    electricity_cost=compile(r'\d+\s+Electricidad consumida kWh (\d*.?\d+)'),#rev
+    demand_max=compile(r'(\d*,?\d+)\s+Demanda Máxima kW \d*.?\d+'),#rev
+    demand_max_cost=compile(r'\d*,?\d+\s+Demanda Máxima kW (\d*.?\d+)'),#rev
+    admin_cost=compile(r'servicio\s+(\d*.?\d+)'),#rev
+    transport_cost=compile(r'Transmisión (\d*.?\d+)'),#rev
+    total_bill=compile(r'$\s*(\d*.?\d+) \d \w{3}'),#rev
+)
+
 litoral = InvoiceAdapter[Pattern,Pattern](
     client=compile(r'(\d{5,6}-\d)'),
     measurer= compile(r'(\d{7,8})EmpresaActual'),
@@ -38,5 +57,5 @@ litoral = InvoiceAdapter[Pattern,Pattern](
     demand_max_cost=compile(r'demanda máxima\s+\d*\W?\d* kW \$ (\d*.?\d+)'),
     admin_cost=compile(r'servicio \$ (\d*.?\d+)'),
     transport_cost=compile(r'transporte de electricidad \$ (\d*.?\d+)'),
-    total_bill=compile(r'\d{5,6}-\d \d{2} \w{3} \d{4}\r\n\s*\$ (\d*.?\d+)'),
+    total_bill=compile(r'$\s*(\d*.?\d+) \d \w{3}'),
 )
